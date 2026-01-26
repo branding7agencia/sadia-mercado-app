@@ -1,16 +1,20 @@
 import { useState, useMemo } from 'react';
 import { Header } from '@/components/Header';
+import { StoriesSection } from '@/components/StoriesSection';
+import { BannerCarousel } from '@/components/BannerCarousel';
 import { CategoryCarousel } from '@/components/CategoryCarousel';
-import { PromoBanner } from '@/components/PromoBanner';
+import { OffersGrid } from '@/components/OffersGrid';
 import { ProductGrid } from '@/components/ProductGrid';
-import { OccasionSection } from '@/components/OccasionSection';
+import { RecipesSection } from '@/components/RecipesSection';
 import { CartSheet } from '@/components/CartSheet';
 import { BottomNav } from '@/components/BottomNav';
-import { products, promoProducts } from '@/data/products';
+import { products } from '@/data/products';
+
+type NavItem = 'home' | 'favorites' | 'cart' | 'brands' | 'menu';
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [activeNav, setActiveNav] = useState<'home' | 'search' | 'favorites' | 'cart' | 'profile'>('home');
+  const [activeNav, setActiveNav] = useState<NavItem>('home');
 
   const filteredProducts = useMemo(() => {
     if (!selectedCategory) return products;
@@ -18,12 +22,15 @@ const Index = () => {
   }, [selectedCategory]);
 
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="min-h-screen bg-background pb-24">
       <Header />
 
       <main className="space-y-2">
-        {/* Promo banner */}
-        <PromoBanner />
+        {/* Stories - product offers */}
+        <StoriesSection />
+
+        {/* Banner carousel */}
+        <BannerCarousel />
 
         {/* Categories */}
         <CategoryCarousel
@@ -31,17 +38,11 @@ const Index = () => {
           onSelectCategory={setSelectedCategory}
         />
 
-        {/* Occasion section */}
-        {!selectedCategory && <OccasionSection />}
+        {/* Offers grid with horizontal scroll */}
+        {!selectedCategory && <OffersGrid />}
 
-        {/* Promo products */}
-        {!selectedCategory && promoProducts.length > 0 && (
-          <ProductGrid
-            products={promoProducts}
-            title="🔥 Ofertas do Dia"
-            subtitle="Aproveite os melhores preços"
-          />
-        )}
+        {/* Recipes section */}
+        {!selectedCategory && <RecipesSection />}
 
         {/* All/Filtered products */}
         <ProductGrid

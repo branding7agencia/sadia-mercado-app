@@ -1,4 +1,27 @@
-import { categories } from '@/data/products';
+import { 
+  Beef, 
+  IceCream, 
+  Drumstick, 
+  Milk, 
+  Cookie,
+  Fish
+} from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+
+interface Category {
+  id: string;
+  name: string;
+  icon: LucideIcon;
+}
+
+const categories: Category[] = [
+  { id: 'frios', name: 'Frios', icon: IceCream },
+  { id: 'congelados', name: 'Congelados', icon: Fish },
+  { id: 'empanados', name: 'Empanados', icon: Drumstick },
+  { id: 'in-natura', name: 'In Natura', icon: Beef },
+  { id: 'margarinas', name: 'Margarinas', icon: Milk },
+  { id: 'salsichas', name: 'Salsichas', icon: Cookie },
+];
 
 interface CategoryCarouselProps {
   selectedCategory: string | null;
@@ -12,54 +35,55 @@ export function CategoryCarousel({ selectedCategory, onSelectCategory }: Categor
         <h2 className="text-lg font-bold text-foreground">Categorias</h2>
       </div>
       
-      <div className="flex gap-3 px-4 overflow-x-auto hide-scrollbar scroll-snap-x pb-2">
+      <div className="flex gap-4 px-4 overflow-x-auto hide-scrollbar pb-2">
         {/* All products option */}
         <button
           onClick={() => onSelectCategory(null)}
-          className={`flex flex-col items-center gap-2 min-w-[72px] transition-all ${
-            selectedCategory === null ? 'scale-105' : ''
-          }`}
+          className="flex flex-col items-center gap-2 min-w-[64px]"
         >
           <div
-            className={`w-16 h-16 rounded-2xl flex items-center justify-center text-2xl transition-all shadow-soft ${
+            className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all ${
               selectedCategory === null
-                ? 'bg-primary shadow-button'
-                : 'bg-card'
+                ? 'bg-foreground text-background'
+                : 'bg-muted text-muted-foreground hover:bg-muted/80'
             }`}
           >
-            🛒
+            <span className="text-lg">🛒</span>
           </div>
-          <span className={`text-xs font-medium ${
-            selectedCategory === null ? 'text-primary' : 'text-muted-foreground'
+          <span className={`text-[11px] font-medium ${
+            selectedCategory === null ? 'text-foreground' : 'text-muted-foreground'
           }`}>
             Todos
           </span>
         </button>
 
-        {categories.map((category) => (
-          <button
-            key={category.id}
-            onClick={() => onSelectCategory(category.id)}
-            className={`flex flex-col items-center gap-2 min-w-[72px] scroll-snap-start transition-all ${
-              selectedCategory === category.id ? 'scale-105' : ''
-            }`}
-          >
-            <div
-              className={`w-16 h-16 rounded-2xl flex items-center justify-center text-2xl transition-all shadow-soft ${
-                selectedCategory === category.id
-                  ? 'bg-primary shadow-button'
-                  : 'bg-card'
-              }`}
+        {categories.map((category) => {
+          const Icon = category.icon;
+          const isSelected = selectedCategory === category.id;
+
+          return (
+            <button
+              key={category.id}
+              onClick={() => onSelectCategory(category.id)}
+              className="flex flex-col items-center gap-2 min-w-[64px]"
             >
-              {category.icon}
-            </div>
-            <span className={`text-xs font-medium text-center ${
-              selectedCategory === category.id ? 'text-primary' : 'text-muted-foreground'
-            }`}>
-              {category.name}
-            </span>
-          </button>
-        ))}
+              <div
+                className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all ${
+                  isSelected
+                    ? 'bg-foreground text-background'
+                    : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                }`}
+              >
+                <Icon className="w-5 h-5" strokeWidth={1.5} />
+              </div>
+              <span className={`text-[11px] font-medium text-center ${
+                isSelected ? 'text-foreground' : 'text-muted-foreground'
+              }`}>
+                {category.name}
+              </span>
+            </button>
+          );
+        })}
       </div>
     </section>
   );
