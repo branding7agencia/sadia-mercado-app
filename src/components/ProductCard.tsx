@@ -5,9 +5,10 @@ import { useCart } from '@/contexts/CartContext';
 
 interface ProductCardProps {
   product: Product;
+  compact?: boolean;
 }
 
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ product, compact = false }: ProductCardProps) {
   const { items, addItem, updateQuantity } = useCart();
   const cartItem = items.find((item) => item.id === product.id);
   const quantity = cartItem?.quantity || 0;

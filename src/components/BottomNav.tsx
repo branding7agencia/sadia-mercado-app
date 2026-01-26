@@ -1,7 +1,7 @@
-import { Home, Search, Heart, User, ShoppingBag } from 'lucide-react';
+import { Home, Heart, ShoppingCart, Tag, Menu } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 
-type NavItem = 'home' | 'search' | 'favorites' | 'cart' | 'profile';
+type NavItem = 'home' | 'favorites' | 'cart' | 'brands' | 'menu';
 
 interface BottomNavProps {
   active: NavItem;
@@ -12,11 +12,11 @@ export function BottomNav({ active, onNavigate }: BottomNavProps) {
   const { totalItems, setIsOpen } = useCart();
 
   const navItems = [
-    { id: 'home' as NavItem, icon: Home, label: 'Início' },
-    { id: 'search' as NavItem, icon: Search, label: 'Buscar' },
+    { id: 'home' as NavItem, icon: Home, label: 'Home' },
     { id: 'favorites' as NavItem, icon: Heart, label: 'Favoritos' },
-    { id: 'cart' as NavItem, icon: ShoppingBag, label: 'Carrinho', badge: totalItems },
-    { id: 'profile' as NavItem, icon: User, label: 'Perfil' },
+    { id: 'cart' as NavItem, icon: ShoppingCart, label: 'Carrinho', badge: totalItems, isCenter: true },
+    { id: 'brands' as NavItem, icon: Tag, label: 'Marcas' },
+    { id: 'menu' as NavItem, icon: Menu, label: 'Menu' },
   ];
 
   const handleClick = (item: NavItem) => {
@@ -29,42 +29,52 @@ export function BottomNav({ active, onNavigate }: BottomNavProps) {
 
   return (
     <nav className="fixed bottom-0 inset-x-0 bg-card border-t border-border safe-area-inset-bottom z-40">
-      <div className="flex items-center justify-around h-16 px-2">
+      <div className="flex items-center justify-around h-20 px-2">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = active === item.id;
+          const isCenter = item.isCenter;
+
+          if (isCenter) {
+            // Center cart button - highlighted
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleClick(item.id)}
+                className="relative -mt-6 flex flex-col items-center"
+              >
+                <div className="w-14 h-14 bg-primary rounded-full flex items-center justify-center shadow-button relative">
+                  <Icon className="w-6 h-6 text-primary-foreground" strokeWidth={2} />
+                  {item.badge !== undefined && item.badge > 0 && (
+                    <span className="absolute -top-1 -right-1 min-w-[20px] h-5 bg-destructive text-destructive-foreground text-[11px] font-bold rounded-full flex items-center justify-center px-1 shadow-sm">
+                      {item.badge > 99 ? '99+' : item.badge}
+                    </span>
+                  )}
+                </div>
+                <span className="text-[10px] font-medium text-primary mt-1">
+                  {item.label}
+                </span>
+              </button>
+            );
+          }
 
           return (
             <button
               key={item.id}
               onClick={() => handleClick(item.id)}
-              className={`flex flex-col items-center justify-center gap-1 flex-1 py-2 transition-all relative ${
+              className={`flex flex-col items-center justify-center gap-1 flex-1 py-2 transition-all ${
                 isActive ? 'text-primary' : 'text-muted-foreground'
               }`}
             >
-              <div className="relative">
-                <Icon
-                  className={`w-6 h-6 transition-all ${
-                    isActive ? 'scale-110' : ''
-                  }`}
-                  strokeWidth={isActive ? 2.5 : 2}
-                />
-                {item.badge && item.badge > 0 && (
-                  <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-primary text-primary-foreground text-[10px] font-bold rounded-full flex items-center justify-center">
-                    {item.badge > 9 ? '9+' : item.badge}
-                  </span>
-                )}
-              </div>
+              <Icon
+                className={`w-5 h-5 transition-all ${isActive ? 'scale-110' : ''}`}
+                strokeWidth={isActive ? 2.5 : 2}
+              />
               <span className={`text-[10px] font-medium ${
                 isActive ? 'text-primary' : 'text-muted-foreground'
               }`}>
                 {item.label}
               </span>
-              
-              {/* Active indicator */}
-              {isActive && (
-                <div className="absolute -top-px left-1/2 -translate-x-1/2 w-8 h-0.5 bg-primary rounded-full" />
-              )}
             </button>
           );
         })}
