@@ -1,9 +1,9 @@
 import { 
   Beef, 
-  IceCream, 
+  Snowflake, 
   Drumstick, 
   Milk, 
-  Cookie,
+  CircleDot,
   Fish
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
@@ -15,12 +15,12 @@ interface Category {
 }
 
 const categories: Category[] = [
-  { id: 'frios', name: 'Frios', icon: IceCream },
+  { id: 'frios', name: 'Frios', icon: Snowflake },
   { id: 'congelados', name: 'Congelados', icon: Fish },
   { id: 'empanados', name: 'Empanados', icon: Drumstick },
   { id: 'in-natura', name: 'In Natura', icon: Beef },
   { id: 'margarinas', name: 'Margarinas', icon: Milk },
-  { id: 'salsichas', name: 'Salsichas', icon: Cookie },
+  { id: 'salsichas', name: 'Salsichas', icon: CircleDot },
 ];
 
 interface CategoryCarouselProps {
@@ -42,10 +42,10 @@ export function CategoryCarousel({ selectedCategory, onSelectCategory }: Categor
           className="flex flex-col items-center gap-2 min-w-[64px]"
         >
           <div
-            className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all ${
+            className={`w-14 h-14 rounded-full flex items-center justify-center transition-all ${
               selectedCategory === null
                 ? 'bg-foreground text-background'
-                : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                : 'bg-amber-100 text-foreground hover:bg-amber-200'
             }`}
           >
             <span className="text-lg">🛒</span>
@@ -68,10 +68,10 @@ export function CategoryCarousel({ selectedCategory, onSelectCategory }: Categor
               className="flex flex-col items-center gap-2 min-w-[64px]"
             >
               <div
-                className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all ${
+                className={`w-14 h-14 rounded-full flex items-center justify-center transition-all ${
                   isSelected
                     ? 'bg-foreground text-background'
-                    : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                    : 'bg-amber-100 text-foreground hover:bg-amber-200'
                 }`}
               >
                 <Icon className="w-5 h-5" strokeWidth={1.5} />
