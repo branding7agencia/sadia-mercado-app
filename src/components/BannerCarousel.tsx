@@ -12,24 +12,24 @@ interface Banner {
 const banners: Banner[] = [
   {
     id: '1',
-    image: 'https://brfsaprodutosprd.blob.core.windows.net/centralbrf/MKP_SAY_135447.webp',
+    image: 'https://images.unsplash.com/photo-1613483187647-1f5e91e1e5e4?w=400&h=400&fit=crop',
     title: 'Salsicha Sadia',
     subtitle: 'O sabor que a família ama',
     bgColor: 'bg-gradient-to-r from-primary/10 to-primary/5',
   },
   {
     id: '2',
-    image: 'https://brf.my.salesforce.com/servlet/servlet.ImageServer?id=015U600000C63tx&oid=00D410000012TJa',
+    image: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=400&h=400&fit=crop',
     title: 'Nuggets Crocantes',
     subtitle: 'Praticidade para o dia a dia',
     bgColor: 'bg-gradient-to-r from-secondary/20 to-secondary/5',
   },
   {
     id: '3',
-    image: 'https://brfsaprodutosprd.blob.core.windows.net/centralbrf/MKP_MGL_126540.webp',
+    image: 'https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=400&h=400&fit=crop',
     title: 'Margarina Qualy',
     subtitle: 'Sabor e qualidade na mesa',
-    bgColor: 'bg-gradient-to-r from-success/10 to-success/5',
+    bgColor: 'bg-gradient-to-r from-amber-100 to-amber-50',
   },
 ];
 
