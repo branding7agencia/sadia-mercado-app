@@ -4,7 +4,8 @@ import {
   Drumstick, 
   Milk, 
   CircleDot,
-  Fish
+  Fish,
+  ShoppingBasket
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
@@ -44,14 +45,14 @@ export function CategoryCarousel({ selectedCategory, onSelectCategory }: Categor
           <div
             className={`w-14 h-14 rounded-full flex items-center justify-center transition-all ${
               selectedCategory === null
-                ? 'bg-foreground text-background'
+                ? 'bg-red-100 text-primary'
                 : 'bg-amber-100 text-foreground hover:bg-amber-200'
             }`}
           >
-            <span className="text-lg">🛒</span>
+            <ShoppingBasket className="w-5 h-5" strokeWidth={1.5} />
           </div>
           <span className={`text-[11px] font-medium ${
-            selectedCategory === null ? 'text-foreground' : 'text-muted-foreground'
+            selectedCategory === null ? 'text-primary' : 'text-muted-foreground'
           }`}>
             Todos
           </span>
@@ -70,14 +71,14 @@ export function CategoryCarousel({ selectedCategory, onSelectCategory }: Categor
               <div
                 className={`w-14 h-14 rounded-full flex items-center justify-center transition-all ${
                   isSelected
-                    ? 'bg-foreground text-background'
+                    ? 'bg-red-100 text-primary'
                     : 'bg-amber-100 text-foreground hover:bg-amber-200'
                 }`}
               >
                 <Icon className="w-5 h-5" strokeWidth={1.5} />
               </div>
               <span className={`text-[11px] font-medium text-center ${
-                isSelected ? 'text-foreground' : 'text-muted-foreground'
+                isSelected ? 'text-primary' : 'text-muted-foreground'
               }`}>
                 {category.name}
               </span>
