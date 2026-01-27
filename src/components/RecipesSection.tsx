@@ -47,7 +47,7 @@ const recipes: Recipe[] = [
   {
     id: '6',
     title: 'Torta Salgada',
-    image: 'https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?w=400&h=300&fit=crop',
+    image: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&h=300&fit=crop',
     time: '40 min',
     category: 'Para a Páscoa',
   },
