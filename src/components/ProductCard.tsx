@@ -21,7 +21,7 @@ export function ProductCard({ product, compact = false }: ProductCardProps) {
   };
 
   return (
-    <div className="bg-card rounded-2xl shadow-card overflow-hidden flex flex-col animate-fade-in">
+    <div className="bg-card rounded-2xl shadow-card overflow-hidden flex flex-col animate-fade-in h-full">
       {/* Image container */}
       <div className="relative aspect-square bg-muted p-3">
         {product.isPromo && (

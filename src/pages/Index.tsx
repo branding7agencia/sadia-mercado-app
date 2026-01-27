@@ -4,11 +4,12 @@ import { StoriesSection } from '@/components/StoriesSection';
 import { BannerCarousel } from '@/components/BannerCarousel';
 import { CategoryCarousel } from '@/components/CategoryCarousel';
 import { OffersGrid } from '@/components/OffersGrid';
+import { ProductSection } from '@/components/ProductSection';
 import { ProductGrid } from '@/components/ProductGrid';
 import { RecipesSection } from '@/components/RecipesSection';
 import { CartSheet } from '@/components/CartSheet';
 import { BottomNav } from '@/components/BottomNav';
-import { products } from '@/data/products';
+import { products, classicProducts, bestSellerProducts } from '@/data/products';
 
 type NavItem = 'home' | 'favorites' | 'cart' | 'brands' | 'menu';
 
@@ -40,6 +41,24 @@ const Index = () => {
 
         {/* Offers grid with horizontal scroll */}
         {!selectedCategory && <OffersGrid />}
+
+        {/* Clássica, prática e irresistível */}
+        {!selectedCategory && (
+          <ProductSection
+            title="Clássica, prática e irresistível"
+            subtitle="Produtos icônicos da Sadia"
+            products={classicProducts}
+          />
+        )}
+
+        {/* Mais vendidos */}
+        {!selectedCategory && (
+          <ProductSection
+            title="Mais vendidos"
+            subtitle="Os favoritos dos nossos clientes"
+            products={bestSellerProducts}
+          />
+        )}
 
         {/* Recipes section */}
         {!selectedCategory && <RecipesSection />}
