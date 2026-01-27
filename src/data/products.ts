@@ -158,3 +158,13 @@ export const products: Product[] = [
 ];
 
 export const promoProducts = products.filter(p => p.isPromo);
+
+// Clássicos Sadia - produtos icônicos da marca
+export const classicProducts = products.filter(p => 
+  p.brand === 'Sadia' && ['1', '3', '5', '11'].includes(p.id)
+);
+
+// Mais vendidos - produtos populares
+export const bestSellerProducts = products.filter(p => 
+  ['1', '3', '7', '10', '9'].includes(p.id)
+);
