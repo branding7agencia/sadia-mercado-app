@@ -39,8 +39,8 @@ export function Header() {
           </div>
 
           {/* User icon */}
-          <div className="w-9 h-9 flex-shrink-0 rounded-full border-2 border-muted-foreground flex items-center justify-center">
-            <User className="w-4 h-4 text-muted-foreground" />
+          <div className="w-9 h-9 flex-shrink-0 rounded-full border border-muted-foreground flex items-center justify-center">
+            <User className="w-5 h-5 text-muted-foreground" />
           </div>
         </div>
       </div>
