@@ -32,7 +32,8 @@ interface CategoryCarouselProps {
 export function CategoryCarousel({ selectedCategory, onSelectCategory }: CategoryCarouselProps) {
   return (
     <section className="py-4">
-      <div className="px-4 mb-3">
+      <div className="px-4 mb-3 flex items-center gap-2">
+        <ShoppingBasket className="w-5 h-5 text-primary" />
         <h2 className="text-lg font-bold text-foreground">Categorias</h2>
       </div>
       
