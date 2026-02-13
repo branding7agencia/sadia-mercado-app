@@ -1,6 +1,5 @@
-import { Search, MapPin } from 'lucide-react';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import mercatoLogo from '@/assets/mercato-logo.png';
+import { Search, MapPin, User } from 'lucide-react';
+import mercatoLogo from '@/assets/mercato-logo-new.png';
 
 export function Header() {
   return (
@@ -23,7 +22,7 @@ export function Header() {
             <img
               src={mercatoLogo}
               alt="Mercato em Casa"
-              className="h-10 w-10 object-contain"
+              className="h-14 w-14 object-contain"
             />
           </div>
 
@@ -39,12 +38,10 @@ export function Header() {
             </div>
           </div>
 
-          {/* Avatar */}
-          <Avatar className="w-10 h-10 flex-shrink-0">
-            <AvatarFallback className="bg-primary text-primary-foreground font-semibold text-sm">
-              MS
-            </AvatarFallback>
-          </Avatar>
+          {/* User icon */}
+          <div className="w-10 h-10 flex-shrink-0 rounded-full bg-primary flex items-center justify-center">
+            <User className="w-5 h-5 text-primary-foreground" />
+          </div>
         </div>
       </div>
     </header>
