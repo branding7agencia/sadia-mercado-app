@@ -1,4 +1,4 @@
-import { Home, Heart, ShoppingCart, Tag, Menu } from 'lucide-react';
+import { Home, Heart, ShoppingCart, Star, Menu } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 
 type NavItem = 'home' | 'favorites' | 'cart' | 'brands' | 'menu';
@@ -15,7 +15,7 @@ export function BottomNav({ active, onNavigate }: BottomNavProps) {
     { id: 'home' as NavItem, icon: Home, label: 'Home' },
     { id: 'favorites' as NavItem, icon: Heart, label: 'Favoritos' },
     { id: 'cart' as NavItem, icon: ShoppingCart, label: 'Carrinho', badge: totalItems, isCenter: true },
-    { id: 'brands' as NavItem, icon: Tag, label: 'Marcas' },
+    { id: 'brands' as NavItem, icon: Star, label: 'Meus Favoritos' },
     { id: 'menu' as NavItem, icon: Menu, label: 'Menu' },
   ];
 
