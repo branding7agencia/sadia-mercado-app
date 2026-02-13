@@ -12,24 +12,24 @@ interface Banner {
 const banners: Banner[] = [
   {
     id: '1',
-    image: 'https://images.unsplash.com/photo-1613483187647-1f5e91e1e5e4?w=400&h=400&fit=crop',
-    title: 'Salsicha Sadia',
-    subtitle: 'O sabor que a família ama',
-    bgColor: 'bg-gradient-to-r from-primary/10 to-primary/5',
+    image: 'https://brf.my.salesforce.com/servlet/servlet.ImageServer?id=015U600000CVaYA&oid=00D410000012TJa&lastMod=1770922438000',
+    title: '',
+    subtitle: '',
+    bgColor: 'bg-background',
   },
   {
     id: '2',
-    image: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=400&h=400&fit=crop',
-    title: 'Nuggets Crocantes',
-    subtitle: 'Praticidade para o dia a dia',
-    bgColor: 'bg-gradient-to-r from-secondary/20 to-secondary/5',
+    image: 'https://brf.my.salesforce.com/servlet/servlet.ImageServer?id=015U600000CPOQ1&oid=00D410000012TJa&lastMod=1770297798000',
+    title: '',
+    subtitle: '',
+    bgColor: 'bg-background',
   },
   {
     id: '3',
-    image: 'https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=400&h=400&fit=crop',
-    title: 'Margarina Qualy',
-    subtitle: 'Sabor e qualidade na mesa',
-    bgColor: 'bg-gradient-to-r from-amber-100 to-amber-50',
+    image: 'https://brf.my.salesforce.com/servlet/servlet.ImageServer?id=015U600000CVKtB&oid=00D410000012TJa&lastMod=1770892927000',
+    title: '',
+    subtitle: '',
+    bgColor: 'bg-background',
   },
 ];
 
@@ -66,26 +66,13 @@ export function BannerCarousel() {
           {banners.map((banner) => (
             <div
               key={banner.id}
-              className={`min-w-full ${banner.bgColor} rounded-2xl p-4 flex items-center gap-4`}
+              className="min-w-full rounded-2xl overflow-hidden"
             >
-              <div className="flex-1">
-                <h3 className="text-lg font-bold text-foreground mb-1">
-                  {banner.title}
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  {banner.subtitle}
-                </p>
-                <button className="mt-3 px-4 py-2 bg-primary text-primary-foreground text-sm font-semibold rounded-full hover:bg-primary/90 transition-colors">
-                  Ver mais
-                </button>
-              </div>
-              <div className="w-24 h-24 flex-shrink-0">
-                <img
-                  src={banner.image}
-                  alt={banner.title}
-                  className="w-full h-full object-contain"
-                />
-              </div>
+              <img
+                src={banner.image}
+                alt={banner.title || `Banner ${banner.id}`}
+                className="w-full h-auto object-cover"
+              />
             </div>
           ))}
         </div>
