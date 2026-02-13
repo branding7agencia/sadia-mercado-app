@@ -1,5 +1,6 @@
 import { Home, Heart, ShoppingCart, Star, Menu } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
+import { useNavigate } from 'react-router-dom';
 
 type NavItem = 'home' | 'favorites' | 'cart' | 'brands' | 'menu';
 
@@ -9,7 +10,8 @@ interface BottomNavProps {
 }
 
 export function BottomNav({ active, onNavigate }: BottomNavProps) {
-  const { totalItems, setIsOpen } = useCart();
+  const { totalItems } = useCart();
+  const navigate = useNavigate();
 
   const navItems = [
     { id: 'home' as NavItem, icon: Home, label: 'Home' },
@@ -21,7 +23,7 @@ export function BottomNav({ active, onNavigate }: BottomNavProps) {
 
   const handleClick = (item: NavItem) => {
     if (item === 'cart') {
-      setIsOpen(true);
+      navigate('/cart');
     } else {
       onNavigate(item);
     }
