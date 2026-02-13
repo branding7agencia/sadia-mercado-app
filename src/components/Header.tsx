@@ -15,10 +15,10 @@ export function Header() {
       </div>
 
       {/* Main header */}
-      <div className="px-4 py-3">
+      <div className="px-4 py-1.5">
         <div className="flex items-center gap-3">
-          {/* Logo */}
-          <div className="flex-shrink-0">
+          {/* Logo - allowed to overflow header slightly */}
+          <div className="flex-shrink-0 -my-2">
             <img
               src={mercatoLogo}
               alt="Mercato em Casa"
@@ -33,15 +33,13 @@ export function Header() {
               <input
                 type="text"
                 placeholder="Buscar produtos..."
-                className="w-full h-10 pl-10 pr-4 rounded-full bg-muted text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+                className="w-full h-9 pl-10 pr-4 rounded-full bg-muted text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
               />
             </div>
           </div>
 
           {/* User icon */}
-          <div className="w-10 h-10 flex-shrink-0 rounded-full bg-primary flex items-center justify-center">
-            <User className="w-5 h-5 text-primary-foreground" />
-          </div>
+          <User className="w-6 h-6 flex-shrink-0 text-muted-foreground" />
         </div>
       </div>
     </header>
