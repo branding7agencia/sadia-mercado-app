@@ -1,6 +1,5 @@
 import { Home, Heart, ShoppingCart, ClipboardList, Menu } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
-import { useNavigate } from 'react-router-dom';
 
 type NavItem = 'home' | 'favorites' | 'cart' | 'orders' | 'menu';
 
@@ -11,7 +10,6 @@ interface BottomNavProps {
 
 export function BottomNav({ active, onNavigate }: BottomNavProps) {
   const { totalItems } = useCart();
-  const navigate = useNavigate();
 
   const navItems = [
     { id: 'home' as NavItem, icon: Home, label: 'Home' },
@@ -20,14 +18,6 @@ export function BottomNav({ active, onNavigate }: BottomNavProps) {
     { id: 'orders' as NavItem, icon: ClipboardList, label: 'Meus Pedidos' },
     { id: 'menu' as NavItem, icon: Menu, label: 'Menu' },
   ];
-
-  const handleClick = (item: NavItem) => {
-    if (item === 'cart') {
-      navigate('/cart');
-    } else {
-      onNavigate(item);
-    }
-  };
 
   return (
     <nav className="fixed bottom-0 inset-x-0 bg-card border-t border-border safe-area-inset-bottom z-40">
@@ -42,7 +32,7 @@ export function BottomNav({ active, onNavigate }: BottomNavProps) {
             return (
               <button
                 key={item.id}
-                onClick={() => handleClick(item.id)}
+                onClick={() => onNavigate(item.id)}
                 className="relative -mt-6 flex flex-col items-center"
               >
                 <div className="w-14 h-14 bg-primary rounded-full flex items-center justify-center shadow-button relative">
@@ -63,7 +53,7 @@ export function BottomNav({ active, onNavigate }: BottomNavProps) {
           return (
             <button
               key={item.id}
-              onClick={() => handleClick(item.id)}
+              onClick={() => onNavigate(item.id)}
               className={`flex flex-col items-center justify-center gap-1 flex-1 py-2 transition-all ${
                 isActive ? 'text-primary' : 'text-muted-foreground'
               }`}
