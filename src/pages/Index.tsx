@@ -10,6 +10,9 @@ import { RecipesSection } from '@/components/RecipesSection';
 import { CartSheet } from '@/components/CartSheet';
 import { BottomNav } from '@/components/BottomNav';
 import { MenuDrawer } from '@/components/MenuDrawer';
+import { CartDrawer } from '@/components/CartDrawer';
+import { OrdersDrawer } from '@/components/OrdersDrawer';
+import { FavoritesDrawer } from '@/components/FavoritesDrawer';
 import { products, classicProducts, bestSellerProducts } from '@/data/products';
 
 type NavItem = 'home' | 'favorites' | 'cart' | 'orders' | 'menu';
@@ -18,6 +21,9 @@ const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [activeNav, setActiveNav] = useState<NavItem>('home');
   const [menuOpen, setMenuOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
+  const [ordersOpen, setOrdersOpen] = useState(false);
+  const [favoritesOpen, setFavoritesOpen] = useState(false);
 
   const filteredProducts = useMemo(() => {
     if (!selectedCategory) return products;
@@ -76,16 +82,19 @@ const Index = () => {
       {/* Cart sheet */}
       <CartSheet />
 
-      {/* Menu drawer */}
+      {/* Drawers */}
       <MenuDrawer open={menuOpen} onOpenChange={setMenuOpen} />
+      <CartDrawer open={cartOpen} onOpenChange={setCartOpen} />
+      <OrdersDrawer open={ordersOpen} onOpenChange={setOrdersOpen} />
+      <FavoritesDrawer open={favoritesOpen} onOpenChange={setFavoritesOpen} />
 
       {/* Bottom navigation */}
       <BottomNav active={activeNav} onNavigate={(item) => {
-        if (item === 'menu') {
-          setMenuOpen(true);
-        } else {
-          setActiveNav(item);
-        }
+        if (item === 'menu') setMenuOpen(true);
+        else if (item === 'cart') setCartOpen(true);
+        else if (item === 'orders') setOrdersOpen(true);
+        else if (item === 'favorites') setFavoritesOpen(true);
+        else setActiveNav(item);
       }} />
     </div>
   );
