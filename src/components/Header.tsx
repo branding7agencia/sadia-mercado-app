@@ -1,7 +1,9 @@
 import { Search, MapPin, User } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import mercatoLogo from '@/assets/mercato-logo-new.png';
 
 export function Header() {
+  const navigate = useNavigate();
   return (
     <header className="sticky top-0 z-50 bg-card shadow-soft safe-area-inset-top">
       {/* Location bar */}
@@ -9,7 +11,7 @@ export function Header() {
         <div className="flex items-center gap-2 text-primary-foreground">
           <MapPin className="w-4 h-4" />
           <span className="text-sm font-medium truncate">
-            Rua Exemplo, 123 - Centro, São Paulo
+            Av. José Maria Whitaker, 798 - Planalto Paulista
           </span>
         </div>
       </div>
@@ -39,9 +41,12 @@ export function Header() {
           </div>
 
           {/* User icon */}
-          <div className="w-9 h-9 flex-shrink-0 rounded-full border border-muted-foreground flex items-center justify-center">
+          <button
+            onClick={() => navigate('/profile')}
+            className="w-9 h-9 flex-shrink-0 rounded-full border border-muted-foreground flex items-center justify-center"
+          >
             <User className="w-5 h-5 text-muted-foreground" />
-          </div>
+          </button>
         </div>
       </div>
     </header>
