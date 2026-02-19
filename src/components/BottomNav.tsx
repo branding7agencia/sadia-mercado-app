@@ -1,8 +1,8 @@
-import { Home, Heart, ShoppingCart, Star, Menu } from 'lucide-react';
+import { Home, Heart, ShoppingCart, ClipboardList, Menu } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import { useNavigate } from 'react-router-dom';
 
-type NavItem = 'home' | 'favorites' | 'cart' | 'brands' | 'menu';
+type NavItem = 'home' | 'favorites' | 'cart' | 'orders' | 'menu';
 
 interface BottomNavProps {
   active: NavItem;
@@ -17,7 +17,7 @@ export function BottomNav({ active, onNavigate }: BottomNavProps) {
     { id: 'home' as NavItem, icon: Home, label: 'Home' },
     { id: 'favorites' as NavItem, icon: Heart, label: 'Favoritos' },
     { id: 'cart' as NavItem, icon: ShoppingCart, label: 'Carrinho', badge: totalItems, isCenter: true },
-    { id: 'brands' as NavItem, icon: Star, label: 'Meus Favoritos' },
+    { id: 'orders' as NavItem, icon: ClipboardList, label: 'Meus Pedidos' },
     { id: 'menu' as NavItem, icon: Menu, label: 'Menu' },
   ];
 

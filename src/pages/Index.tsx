@@ -9,13 +9,15 @@ import { ProductGrid } from '@/components/ProductGrid';
 import { RecipesSection } from '@/components/RecipesSection';
 import { CartSheet } from '@/components/CartSheet';
 import { BottomNav } from '@/components/BottomNav';
+import { MenuDrawer } from '@/components/MenuDrawer';
 import { products, classicProducts, bestSellerProducts } from '@/data/products';
 
-type NavItem = 'home' | 'favorites' | 'cart' | 'brands' | 'menu';
+type NavItem = 'home' | 'favorites' | 'cart' | 'orders' | 'menu';
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [activeNav, setActiveNav] = useState<NavItem>('home');
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const filteredProducts = useMemo(() => {
     if (!selectedCategory) return products;
@@ -74,8 +76,17 @@ const Index = () => {
       {/* Cart sheet */}
       <CartSheet />
 
+      {/* Menu drawer */}
+      <MenuDrawer open={menuOpen} onOpenChange={setMenuOpen} />
+
       {/* Bottom navigation */}
-      <BottomNav active={activeNav} onNavigate={setActiveNav} />
+      <BottomNav active={activeNav} onNavigate={(item) => {
+        if (item === 'menu') {
+          setMenuOpen(true);
+        } else {
+          setActiveNav(item);
+        }
+      }} />
     </div>
   );
 };
